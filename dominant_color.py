@@ -34,7 +34,7 @@ while(cap.isOpened()):
 
     if ret==True:
         # Create a copy of the ROI from frame
-        roi = frame[215:265,295:345].copy()
+        roi = frame[190:290,270:370].copy()
         roi = cv2.cvtColor(roi, cv2.COLOR_BGR2RGB)
 
         roi = roi.reshape((roi.shape[0] * roi.shape[1],3)) # represent as row*column, channel number
