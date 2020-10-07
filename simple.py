@@ -1,3 +1,7 @@
+'''
+References: Image Thresholding, https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_imgproc/py_thresholding/py_thresholding.html#thresholding
+'''
+
 import cv2
 import numpy as np
 from matplotlib import pyplot as plt

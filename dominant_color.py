@@ -1,3 +1,7 @@
+'''
+References: Finding Dominant Colour on an Image, https://code.likeagirl.io/finding-dominant-colour-on-an-image-b4e075f98097
+'''
+
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
@@ -22,7 +26,7 @@ def plot_colors2(hist, centroids):
 
     color = centroids[np.argmax(hist)].astype("uint8").tolist()
     cv2.rectangle(bar, (0, 0), (250, 250), color, -1)
-    cv2.putText(bar,"RGB: ("+','.join(map(str,color))+")",(0,245),cv2.FONT_HERSHEY_SIMPLEX,0.6,(255,255,255),2)
+    cv2.putText(bar,"RGB: ("+','.join(map(str,color))+")",(0,245),cv2.FONT_HERSHEY_SIMPLEX,0.6,(0,0,0),2)
 
     # return the bar chart
     return bar

@@ -1,3 +1,15 @@
+'''
+References:
+
+1. Changing Colorspaces, https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_imgproc/py_colorspaces/py_colorspaces.html#converting-colorspaces
+
+2. Image Thresholding, https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_imgproc/py_thresholding/py_thresholding.html#thresholding
+
+3. Contour Features, https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_imgproc/py_contours/py_contour_features/py_contour_features.html#contour-features
+
+4. Smoothing Images, https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_imgproc/py_filtering/py_filtering.html
+'''
+
 import cv2
 import numpy as np
 
@@ -19,15 +31,29 @@ while(cap.isOpened()):
         lower_blue_hsv = np.array([90,80,10])
         upper_blue_hsv = np.array([120,255,255])
         
-        # define range of blue color in BGR
+        # define range of blue color in RGB
         lower_blue_rgb = np.array([10,30,80])
         upper_blue_rgb = np.array([60,150,255])                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+
+        # define range of the green color in HSV
+        # lower_green_hsv = np.array([50,80,50])
+        # upper_green_hsv = np.array([70,170,255])
+
+        # define range of the green color in RGB
+        # lower_green_rgb = np.array([60,160,60])
+        # upper_green_rgb = np.array([170,255,170])
 
         # Threshold the HSV image to get only blue colors
         mask_hsv = cv2.inRange(hsv,lower_blue_hsv,upper_blue_hsv)
 
         # Threshold the BGR image to get only blue colors
         mask_rgb = cv2.inRange(rgb,lower_blue_rgb,upper_blue_rgb)
+
+        # Threshold the HSV image to get only green colors
+        # mask_hsv = cv2.inRange(hsv,lower_green_hsv,upper_green_hsv)
+
+        # Threshold the RGB image to get only green colors
+        # mask_rgb = cv2.inRange(rgb,lower_green_rgb,upper_green_rgb)
 
         # Filter masked image using median blur
         median_hsv = cv2.medianBlur(mask_hsv,13)
@@ -54,7 +80,7 @@ while(cap.isOpened()):
                 # Draw bounding box
                 x,y,w,h = cv2.boundingRect(cnt) 
                 frame = cv2.rectangle(frame,(x,y),(x+w,y+h),(255,0,0),2)
-                cv2.putText(frame,"HSV",(x,y),cv2.FONT_HERSHEY_SIMPLEX,0.8,(255,0,0),2) 
+                cv2.putText(frame,"HSV",(x,y-5),cv2.FONT_HERSHEY_SIMPLEX,0.8,(255,0,0),2) 
 
         if len(contours_rgb) > 0:
             cnt = max(contours_rgb, key=cv2.contourArea)
@@ -70,7 +96,7 @@ while(cap.isOpened()):
                 # Draw bounding box
                 x,y,w,h = cv2.boundingRect(cnt) 
                 frame = cv2.rectangle(frame,(x,y),(x+w,y+h),(0,255,0),2)
-                cv2.putText(frame,"RGB",(x+w-50,y),cv2.FONT_HERSHEY_SIMPLEX,0.8,(0,255,0),2) 
+                cv2.putText(frame,"RGB",(x+w-50,y-5),cv2.FONT_HERSHEY_SIMPLEX,0.8,(0,255,0),2) 
 
         cv2.imshow('frame',frame)
         cv2.imshow('HSV mask',median_hsv)

@@ -1,4 +1,7 @@
-# Python 2/3 compatibility
+'''
+References: Open Source Computer Vision Library, https://github.com/opencv/opencv/blob/master/samples/python/gaussian_mix.py
+'''
+
 from __future__ import print_function
 import sys
 PY3 = sys.version_info[0] == 3

@@ -1,4 +1,7 @@
-# Python 2/3 compatibility
+'''
+References: Finding Dominant Colour on an Image, https://code.likeagirl.io/finding-dominant-colour-on-an-image-b4e075f98097
+'''
+
 from __future__ import print_function
 
 import numpy as np
